@@ -1,0 +1,6 @@
+/frontend/node_modules/
+/frontend/yarn-error.log
+
+**/**/__pycache__/
+/cms/db.sqlite3
+.venv

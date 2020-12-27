@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load static %}
+{% load wagtailcore_tags %}
+
+{% block body_class %}template-homepage{% endblock %}
+
+{% block extra_css %}
+
+
+{% comment %}
+Delete the line below if you're just getting started and want to remove the welcome screen!
+{% endcomment %}
+<link rel="stylesheet" href="{% static 'css/welcome_page.css' %}">
+{% endblock extra_css %}
+
+{% block content %}
+
+<div>
+    <div id="vue-count-button"></div>
+    <div id="vue-sidebar"></div>
+</div>
+<article>
+    {% for block in page.body %}
+        {% if block.block_type == 'heading' %}
+            {{ block.value|json_script:'header_title'}}
+            {{ block.value|json_script:'header_title2'}}
+            <h1>{{ block.value }}</h1>
+        {% endif %}
+        {% if block.block_type == 'paragraph' %}
+            <p>{{ block.value }}</p>
+        {% endif %}
+
+    {% endfor %}
+</article>
+
+
+{% endblock content %}

@@ -1,0 +1,26 @@
+version: "3"
+
+services:
+    cms:
+        restart: always
+        image: cms/wagtail
+        build:
+            context: ./cms
+        volumes:
+            - ./cms:/code/cms
+            - ./frontend:/code/cms/frontend
+        ports:
+            - 8000:8000
+        links:
+            - frontend
+
+    frontend:
+        restart: always
+        image: frontend/node
+        build:
+            context: ./frontend
+        command: yarn serve
+        ports:
+            - 8080:8080
+        volumes:
+            - ./frontend:/code/cms/frontend
